@@ -13,13 +13,6 @@ describe('Paddle', function() {
     assert.isObject(paddle);
   });
 
-  it('should have dimensions and x and y values', function() {
-    var paddle = new Paddle(10, 100, 15);
-    assert.equal(paddle.x, 10);
-    assert.equal(paddle.width, 100);
-    assert.equal(paddle.height, 15);
-  });
-
   it('should be animated', function() {
     var paddle = new Paddle(10, 100, 15);
 

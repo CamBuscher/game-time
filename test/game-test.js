@@ -56,7 +56,6 @@ describe('Game', function() {
     let newGame = new Game(ball, paddle);
     let brick = new Brick();
 
-    assert.deepEqual(brick.bricks, []);
     assert.equal(newGame.level, 1);
 
     newGame.checkBricks();
@@ -70,11 +69,12 @@ describe('Game', function() {
     let newGame = new Game(ball, paddle);
     let brick = new Brick()
     let testBrick = new Brick( 10, 10);
-    brick.bricks.push(testBrick);
+    let bricksArray = []
+    bricksArray.push(testBrick);
 
     assert.equal(newGame.score, 0);
 
-    newGame.brickBallColliding(ball, brick.bricks)
+    newGame.brickBallColliding(ball, bricksArray)
     assert.equal(newGame.score, 100);
   })
 
@@ -111,13 +111,14 @@ describe('Game', function() {
     let newGame = new Game(ball, paddle);
     let brick = new Brick()
     let testBrick = new Brick( 10, 10 );
-    brick.bricks.push(testBrick);
+    let bricksArray = []
+    bricksArray.push(testBrick);
 
     let boolean = newGame.collisionCheck(ball, testBrick);
     assert.equal(boolean, true);
 
     assert.equal(ball.dx, 5)
-    ball.dx = newGame.brickBallSideCollision(ball, brick.bricks)
+    ball.dx = newGame.brickBallSideCollision(ball, bricksArray)
     assert.equal(ball.dx, -5)
   })
 

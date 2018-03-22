@@ -1,9 +1,9 @@
 const Paddle = require('../lib/Paddle');
-const Keyboarder = require('../lib/keyboarder.js');
-const Ball = require('../lib/ball.js');
-const Scores = require('../lib/scores.js');
+const Keyboarder = require('../lib/Keyboarder.js');
+const Ball = require('../lib/Ball.js');
+const Scores = require('../lib/Scores.js');
 const Game = require('../lib/Game.js');
-const Brick = require('../lib/bricks.js');
+const Brick = require('../lib/Bricks.js');
 const chai = require('chai');
 const assert = chai.assert;
 

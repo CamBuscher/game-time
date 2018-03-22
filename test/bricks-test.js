@@ -1,6 +1,6 @@
 const chai = require('chai');
 const assert = chai.assert;
-const Brick = require('../lib/bricks');
+const Brick = require('../lib/Bricks');
 
 describe('Brick', function() {
   it('should be a constructor', function() {

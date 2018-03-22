@@ -85,9 +85,9 @@ describe('Game', function() {
 
     assert.equal(ball.dy, 5);
 
-    ball.dy = newGame.paddleBallColliding(ball, paddle);
+    let newVelocity = newGame.paddleBallColliding(ball, paddle);
 
-    assert.equal(ball.dy, -5)
+    assert.equal(newVelocity, -5)
   })
 
   it('should manipulate ball velocity based where ball hits paddle', function() {
@@ -118,8 +118,8 @@ describe('Game', function() {
     assert.equal(boolean, true);
 
     assert.equal(ball.dx, 5)
-    ball.dx = newGame.brickBallSideCollision(ball, bricksArray)
-    assert.equal(ball.dx, -5)
+    let newVelocity = newGame.brickBallSideCollision(ball, bricksArray)
+    assert.equal(newVelocity, -5)
   })
 
 })

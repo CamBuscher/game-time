@@ -23,10 +23,10 @@ describe('Paddle', function() {
   it('should be animated', function() {
     var paddle = new Paddle(10, 100, 15);
 
-    paddle.animate({37:true});
+    paddle.animate({37: true});
     assert.equal(paddle.x, 5)
 
-    paddle.animate({39:true});
+    paddle.animate({39: true});
     assert.equal(paddle.x, 10);
   })
 })

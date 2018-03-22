@@ -1,9 +1,9 @@
 const Paddle = require('../lib/Paddle');
-const Keyboarder = require('../lib/keyboarder.js');
-const Ball = require('../lib/ball.js');
-const Scores = require('../lib/scores.js');
+const Keyboarder = require('../lib/Keyboarder.js');
+const Ball = require('../lib/Ball.js');
+const Scores = require('../lib/Scores.js');
 const Game = require('../lib/Game.js');
-const Brick = require('../lib/bricks.js');
+const Brick = require('../lib/Brick.js');
 const chai = require('chai');
 const assert = chai.assert;
 
@@ -20,7 +20,7 @@ describe('Game', function() {
     assert.isObject(newGame);
   })
 
-  it('should detect collision', function() {
+  it('should detect collision between two objects', function() {
     let ball = new Ball(375, 475, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -39,7 +39,7 @@ describe('Game', function() {
     assert.equal(ballIsDead, true);
   })
 
-  it('should count lives', function() {
+  it('should count lives and adjust them when a ball dies', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -50,13 +50,12 @@ describe('Game', function() {
     assert.equal(newGame.lives, 2);
   })
 
-  it('should keep track of level', function() {
+  it('should keep track of level player is on', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
     let brick = new Brick();
 
-    assert.deepEqual(brick.bricks, []);
     assert.equal(newGame.level, 1);
 
     newGame.checkBricks();
@@ -64,30 +63,31 @@ describe('Game', function() {
     assert.equal(newGame.level, 2)
   })
 
-  it('should count score', function() {
+  it('should count score when ball hits a brick', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
     let brick = new Brick()
     let testBrick = new Brick( 10, 10);
-    brick.bricks.push(testBrick);
+    let bricksArray = []
+    bricksArray.push(testBrick);
 
     assert.equal(newGame.score, 0);
 
-    newGame.brickBallColliding(ball, brick.bricks)
+    newGame.brickBallColliding(ball, bricksArray)
     assert.equal(newGame.score, 100);
   })
 
-  it('should bounce off paddle', function() {
+  it('ball should bounce off paddle when they collide', function() {
     let ball = new Ball(375, 475, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
 
     assert.equal(ball.dy, 5);
 
-    ball.dy = newGame.paddleBallColliding(ball, paddle);
+    let newVelocity = newGame.paddleBallColliding(ball, paddle);
 
-    assert.equal(ball.dy, -5)
+    assert.equal(newVelocity, -5)
   })
 
   it('should manipulate ball velocity based where ball hits paddle', function() {
@@ -105,20 +105,21 @@ describe('Game', function() {
     assert.equal(ball.dx, 5);
   })
 
-  it('should detect when ball hits side of brick', function() {
+  it('should detect when ball hits side of brick and ball should bounce accordingly', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
     let brick = new Brick()
     let testBrick = new Brick( 10, 10 );
-    brick.bricks.push(testBrick);
+    let bricksArray = []
+    bricksArray.push(testBrick);
 
     let boolean = newGame.collisionCheck(ball, testBrick);
     assert.equal(boolean, true);
 
     assert.equal(ball.dx, 5)
-    ball.dx = newGame.brickBallSideCollision(ball, brick.bricks)
-    assert.equal(ball.dx, -5)
+    let newVelocity = newGame.brickBallSideCollision(ball, bricksArray)
+    assert.equal(newVelocity, -5)
   })
 
 })

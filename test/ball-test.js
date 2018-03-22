@@ -12,19 +12,7 @@ describe('Ball', function() {
     var ball = new Ball(0, 0, 10, 10);
   })
 
-  it('should have x and y coordinates', function(){
-    var ball = new Ball(0, 0, 10, 10);
-    assert.equal(ball.x, 0);
-    assert.equal(ball.y, 0);
-  })
-
-  it('should have velocity', function() {
-    var ball = new Ball(0, 0, 10, 10);
-    assert.equal(ball.dx, 10);
-    assert.equal(ball.dy, 10);
-  })
-
-  it('should move', function() {
+  it('when move function is called, ball should change position', function() {
     var ball = new Ball(50, 50, 10, 10);
     ball.move(400, 400);
     ball.move(400, 400);

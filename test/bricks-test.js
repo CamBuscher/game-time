@@ -7,7 +7,7 @@ describe('Brick', function() {
     assert.isFunction(Brick, true);
   })
 
-  it('should create a lot of bricks', function() {
+  it('create bricks function should create a lot of bricks', function() {
     let brick = new Brick(5, 5);
     let bricksArray = brick.createBricks(20, 1);
     assert.equal(bricksArray.length, 20);
@@ -29,7 +29,7 @@ describe('Brick', function() {
     assert.equal(strongerBricks.length, 32);
   })
 
-  it('should be able to clear it\'s bricks array', function() {
+  it('clear bricks function should be able to clear it\'s bricks array', function() {
     let brick = new Brick();
     let bricksArray = brick.createBricks(60, 3);
     assert.equal(bricksArray.length, 48);

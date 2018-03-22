@@ -13,7 +13,7 @@ describe('Paddle', function() {
     assert.isObject(paddle);
   });
 
-  it('should be animated', function() {
+  it('paddle should move when correct key is pressed', function() {
     var paddle = new Paddle(10, 100, 15);
 
     paddle.animate({37: true});
@@ -21,5 +21,5 @@ describe('Paddle', function() {
 
     paddle.animate({39: true});
     assert.equal(paddle.x, 10);
-  })
+  });
 })

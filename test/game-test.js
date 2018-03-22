@@ -20,7 +20,7 @@ describe('Game', function() {
     assert.isObject(newGame);
   })
 
-  it('should detect collision', function() {
+  it('should detect collision between two objects', function() {
     let ball = new Ball(375, 475, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -39,7 +39,7 @@ describe('Game', function() {
     assert.equal(ballIsDead, true);
   })
 
-  it('should count lives', function() {
+  it('should count lives and adjust them when a ball dies', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -50,7 +50,7 @@ describe('Game', function() {
     assert.equal(newGame.lives, 2);
   })
 
-  it('should keep track of level', function() {
+  it('should keep track of level player is on', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -63,7 +63,7 @@ describe('Game', function() {
     assert.equal(newGame.level, 2)
   })
 
-  it('should count score', function() {
+  it('should count score when ball hits a brick', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -78,7 +78,7 @@ describe('Game', function() {
     assert.equal(newGame.score, 100);
   })
 
-  it('should bounce off paddle', function() {
+  it('ball should bounce off paddle when they collide', function() {
     let ball = new Ball(375, 475, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);
@@ -105,7 +105,7 @@ describe('Game', function() {
     assert.equal(ball.dx, 5);
   })
 
-  it('should detect when ball hits side of brick', function() {
+  it('should detect when ball hits side of brick and ball should bounce accordingly', function() {
     let ball = new Ball(10, 10, 5, 5);
     let paddle = new Paddle(375, 150, 15)
     let newGame = new Game(ball, paddle);

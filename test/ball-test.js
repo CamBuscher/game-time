@@ -12,7 +12,7 @@ describe('Ball', function() {
     var ball = new Ball(0, 0, 10, 10);
   })
 
-  it('should move', function() {
+  it('when move function is called, ball should change position', function() {
     var ball = new Ball(50, 50, 10, 10);
     ball.move(400, 400);
     ball.move(400, 400);

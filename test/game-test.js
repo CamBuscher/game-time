@@ -3,7 +3,7 @@ const Keyboarder = require('../lib/Keyboarder.js');
 const Ball = require('../lib/Ball.js');
 const Scores = require('../lib/Scores.js');
 const Game = require('../lib/Game.js');
-const Brick = require('../lib/Bricks.js');
+const Brick = require('../lib/Brick.js');
 const chai = require('chai');
 const assert = chai.assert;
 

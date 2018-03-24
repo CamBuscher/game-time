@@ -4,6 +4,7 @@ const Ball = require('../lib/Ball.js');
 const Scores = require('../lib/Scores.js');
 const Game = require('../lib/Game.js');
 const Brick = require('../lib/Brick.js');
+const StrongerBrick = require('../lib/StrongerBrick.js');
 const chai = require('chai');
 const assert = chai.assert;
 
@@ -120,6 +121,37 @@ describe('Game', function() {
     assert.equal(ball.dx, 5)
     let newVelocity = newGame.brickBallSideCollision(ball, bricksArray)
     assert.equal(newVelocity, -5)
+  })
+
+  it('create bricks function should create a lot of bricks', function() {
+    let newGame = new Game();
+    let bricksArray = newGame.createBricksLvlsOneTwo(20, 1);
+    assert.equal(bricksArray.length, 20);
+  })
+
+  it('should create 16 normal bricks on level 3', function() {
+    let newGame = new Game();
+    let bricksArray = newGame.createBricksLvlThree(60);
+    assert.equal(bricksArray.length, 48);
+    let normalBricks = bricksArray.filter( brick => brick.health === 1 )
+    assert.equal(normalBricks.length, 16);
+  })
+
+  it('should create 32 strong bricks on level 3', function() {
+    let newGame = new Game();
+    let bricksArray = newGame.createBricksLvlThree(60);
+    assert.equal(bricksArray.length, 48);
+    let strongerBricks = bricksArray.filter( brick => brick.health === 2)
+    assert.equal(strongerBricks.length, 32);
+  })
+
+  it('clear bricks function should be able to clear it\'s bricks array', function() {
+    let brick = new Brick();
+    let newGame = new Game();
+    let bricksArray = newGame.createBricksLvlThree(60);
+    assert.equal(bricksArray.length, 48);
+    bricksArray = brick.clearBricks();
+    assert.equal(bricksArray.length, 0);
   })
 
 })
